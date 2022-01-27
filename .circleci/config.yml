@@ -26,4 +26,4 @@ workflows:
   build:
     jobs:
       - build-tag-deploy:
-          context: sample_context_1
+          context: sample_context
