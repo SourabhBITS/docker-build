@@ -2,9 +2,9 @@ version: 2.1
 
 jobs:
   build-tag-deploy:
-    #machine: true
-    docker:
-      - image: hub.docker.prod.walmart.com/cimg/base:2021.02-20.04
+    machine: true
+    # docker:
+    #   - image: hub.docker.prod.walmart.com/cimg/base:2021.02-20.04
     steps:
       # Checkout the code as the first step.
       - checkout
