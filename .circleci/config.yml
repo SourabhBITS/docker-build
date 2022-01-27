@@ -1,0 +1,29 @@
+version: 2.1
+
+jobs:
+  build-tag-deploy:
+    #machine: true
+    docker:
+      - image: hub.docker.prod.walmart.com/cimg/base:2021.02-20.04
+    steps:
+      # Checkout the code as the first step.
+      - checkout
+      # Build, Tag, Deploy
+      - setup_remote_docker:
+          docker_layer_caching: true
+      - run:
+          name: Build
+          command: docker build -t v0k00u8-circleci-sample-docker-image .
+      - run:
+          name: Tag
+          command: docker tag v0k00u8-circleci-sample-docker-image $CI_REGISTRY/v0k00u8/v0k00u8-circleci-sample-docker-image
+      - run:
+          name: Deploy
+          command: |
+            echo $CI_REGISTRY_PASSWORD | docker login -u $CI_REGISTRY_USER $CI_REGISTRY --password-stdin
+            docker push $CI_REGISTRY/v0k00u8/v0k00u8-circleci-sample-docker-image
+workflows:
+  build:
+    jobs:
+      - build-tag-deploy:
+          context: sample_context_1
