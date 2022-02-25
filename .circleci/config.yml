@@ -9,8 +9,7 @@ jobs:
       # Checkout the code as the first step.
       - checkout
       # Build, Tag, Deploy
-      - setup_remote_docker:
-          docker_layer_caching: true
+      - setup_remote_docker
       - run:
           name: Build
           command: docker build -t v0k00u8-circleci-sample-docker-image .
