@@ -2,7 +2,6 @@ version: 2.1
 
 jobs:
   build-tag-deploy:
-    resource_class: xlarge
     # machine: true
     docker:
       - image: hub.docker.prod.walmart.com/cimg/base:2021.02-20.04
