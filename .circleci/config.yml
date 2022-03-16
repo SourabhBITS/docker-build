@@ -15,12 +15,12 @@ jobs:
           command: docker build -t v0k00u8-circleci-sample-docker-image .
       - run:
           name: Tag
-          command: docker tag v0k00u8-circleci-sample-docker-image $CI_REGISTRY/v0k00u8/v0k00u8-circleci-sample-docker-image
+          command: docker tag v0k00u8-circleci-sample-docker-image $CI_REGISTRY_PROD/v0k00u8/v0k00u8-circleci-sample-docker-image
       - run:
           name: Deploy
           command: |
-            echo $CI_REGISTRY_PASSWORD | docker login -u $CI_REGISTRY_USER $CI_REGISTRY --password-stdin
-            docker push $CI_REGISTRY/v0k00u8/v0k00u8-circleci-sample-docker-image
+            echo $CI_REGISTRY_PASSWORD | docker login -u $CI_REGISTRY_USER $CI_REGISTRY_PROD --password-stdin
+            docker push $CI_REGISTRY_PROD/v0k00u8/v0k00u8-circleci-sample-docker-image
 workflows:
   build:
     jobs:
