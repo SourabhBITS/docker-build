@@ -4,7 +4,7 @@ jobs:
   build-tag-deploy:
     # machine: true
     docker:
-      - image: hub.docker.prod.walmart.com/cimg/base:2021.02-20.04
+      - image: cimg/base:2021.02-20.04
     steps:
       # Checkout the code as the first step.
       - checkout
@@ -12,15 +12,8 @@ jobs:
       - setup_remote_docker
       - run:
           name: Build
-          command: docker build -t v0k00u8-circleci-sample-docker-image .
-      - run:
-          name: Tag
-          command: docker tag v0k00u8-circleci-sample-docker-image $CI_REGISTRY_PROD/v0k00u8/v0k00u8-circleci-sample-docker-image
-      - run:
-          name: Deploy
-          command: |
-            echo $CI_REGISTRY_PASSWORD | docker login -u $CI_REGISTRY_USER $CI_REGISTRY_PROD --password-stdin
-            docker push $CI_REGISTRY_PROD/v0k00u8/v0k00u8-circleci-sample-docker-image
+          command: docker build -t circleci-sample-docker-image .
+
 workflows:
   build:
     jobs:
